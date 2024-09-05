@@ -1,10 +1,9 @@
 'use client';
 
-import { getPageContent } from '@/lib/notion';
 import Link from 'next/link';
-import { useState } from 'react';
-// app/page.tsx
 import useSWR from 'swr';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -13,14 +12,6 @@ export default function Home() {
 
   if (error) return <div>Failed to load</div>;
   if (!data) return <div>Loading...</div>;
-
-  console.log(data.results[0].id);
-
-  // const loadContent = async (pageId: string) => {
-  //   const pageContent = await getPageContent(pageId);
-  //   console.log(pageContent);
-  // };
-  // loadContent(data.results[0].id);
 
   return (
     <div className="mx-3">
